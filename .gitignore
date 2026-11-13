@@ -1,0 +1,19 @@
+bin/
+obj/
+*.user
+.vs/
+appsettings.Local.json
+
+# security-test-report.md F1 - anywhere a real secret (Jwt:Key, a
+# connection string with a real password, a cert) might end up locally.
+# appsettings.json itself ships with no real secrets (see its own "//NOTE"
+# entries), so it's intentionally NOT listed here - only environment/local
+# overrides and actual key/cert material are.
+.env
+.env.*
+!.env.example
+appsettings.Production.json
+*.pem
+*.key
+*.pfx
+secrets.json

@@ -1,0 +1,34 @@
+/* Warm storefront and role navigation for the demo. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--brand-cream); color: var(--brand-green-deep); font: 16px/1.5 "DM Sans", sans-serif; }
+.site-header, main { width: min(calc(100% - 48px), 1180px); margin-inline: auto; }
+.site-header { display: flex; justify-content: space-between; align-items: center; min-height: 77px; border-bottom: 1px solid var(--gray-200); gap: 16px; }
+.wordmark { color: inherit; font: 37px/1 "Instrument Serif", Georgia, serif; text-decoration: none; }
+.wordmark span { color: var(--brand-orange); }
+#mode-badge { padding: 6px 12px; border-radius: 100px; background: #efe1d0; color: #603e2b; font-size: .8rem; font-weight: 700; }
+.hero { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; margin-top: 24px; border-radius: 28px; overflow: hidden; background: #f0e1ce; }
+.hero-copy { padding: clamp(32px, 6vw, 86px); align-self: center; }
+.eyebrow { margin: 0 0 16px; color: var(--brand-orange); letter-spacing: .12em; font-weight: 700; text-transform: uppercase; font-size: .75rem; }
+h1, h2 { font: 400 clamp(3.25rem, 6.5vw, 6.3rem)/.94 "Instrument Serif", Georgia, serif; margin: 0; }
+.hero-copy > p:not(.eyebrow) { color: #614837; max-width: 29ch; margin: 24px 0; }
+.primary-link { display: inline-flex; gap: 16px; align-items: center; background: var(--brand-orange); color: white; padding: 12px 19px; border-radius: 100px; text-decoration: none; font-weight: 700; min-height: 48px; }
+.hero-photo { position: relative; min-height: 340px; margin: 0; background: #bd936e; }
+.hero-photo img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+.hero-photo figcaption { position: absolute; bottom: 22px; left: 22px; background: var(--brand-white); padding: 10px 17px; border-radius: 12px; display: grid; }
+.hero-photo figcaption span { color: var(--brand-text-muted); font-size: .77rem; }
+.workspace { padding: 34px 0 46px; }
+.workspace h2 { font-size: 2.5rem; }
+.workspace p { margin: 6px 0 0; color: var(--brand-text-muted); }
+.role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+.role-grid a { position: relative; display: grid; gap: 3px; color: inherit; text-decoration: none; padding: 16px 38px 16px 18px; border: 1px solid var(--gray-200); border-radius: 14px; background: var(--brand-white); }
+.role-grid a:hover, .primary-link:hover { box-shadow: 0 4px 16px #51311b29; }
+.role-grid span { color: var(--brand-text-muted); font-size: .875rem; }
+.role-grid b { position: absolute; right: 14px; top: 14px; color: var(--brand-orange); }
+@media (max-width: 680px) {
+    .site-header, main { width: calc(100% - 28px); }
+    .hero, .role-grid { grid-template-columns: 1fr; }
+    .hero-photo { min-height: 235px; }
+    .hero-copy { padding: 28px 24px; }
+}

@@ -1,0 +1,52 @@
+<!--
+  FILE: kitchen/index.html
+  PURPOSE: The live Kitchen Display board - guarded behind staff login,
+           loads open orders, connects to OrderHub over SignalR, and shows
+           status buttons per 07-REALTIME-ORDER-FLOW.md.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Display - Scan & Eat</title>
+    <link rel="stylesheet" href="css/board.css">
+</head>
+<body>
+    <header class="kds-topbar">
+        <div class="brand">Scan &amp; Eat <span>Kitchen</span></div>
+        <div class="topbar-right">
+            <span id="connection-indicator" role="status">Connecting…</span>
+            <span id="staff-name"></span>
+            <button id="logout-btn">Sign Out</button>
+        </div>
+    </header>
+
+    <div id="demo-mode-banner" hidden>
+        <span id="demo-mode-banner-text"></span>
+        <button id="simulate-order-btn" hidden>Add sample order</button>
+    </div>
+
+    <nav class="filter-tabs" aria-label="Filter orders">
+        <button class="filter-tab active" data-status="All" aria-pressed="true">All <span class="filter-count">0</span></button>
+        <button class="filter-tab" data-status="Pending" aria-pressed="false">New <span class="filter-count">0</span></button>
+        <button class="filter-tab" data-status="InPreparation" aria-pressed="false">Cooking <span class="filter-count">0</span></button>
+        <button class="filter-tab" data-status="Ready" aria-pressed="false">Ready <span class="filter-count">0</span></button>
+    </nav>
+
+    <main>
+        <p id="board-empty-msg" hidden>No open orders right now. New tickets will appear here automatically.</p>
+        <div class="orders-board" id="orders-board"></div>
+    </main>
+
+    <script src="../shared/js/signalr.min.js"></script>
+    <script src="../shared/js/config.js"></script>
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api-client.js"></script>
+    <script src="../shared/js/demo-store.js"></script>
+    <script src="../shared/js/demo-orders.js"></script>
+    <script src="js/kitchen-demo-data.js"></script>
+    <script src="js/signalr-client.js"></script>
+    <script src="js/kitchen.js"></script>
+</body>
+</html>

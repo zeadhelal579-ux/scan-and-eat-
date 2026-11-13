@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!--
+    back-end menu.csproj
+    PURPOSE: Project file for the Scan & Eat backend (ASP.NET Core Web API, .NET 10).
+    NOTE:    RootNamespace/AssemblyName are set explicitly to "ScanEat.Api" so the
+             space in the folder/project name ("back-end menu") never has to be
+             inferred into a C# namespace - every .cs file below uses
+             "namespace ScanEat.Api...." regardless of the folder name.
+             See 04-BACKEND-ARCHITECTURE.md section 7 - the space in the name is
+             documented as fine to keep as-is.
+    VERSION NOTE: Originally written against .NET 8 (what 02-SYSTEM-ARCHITECTURE.md
+             and 04-BACKEND-ARCHITECTURE.md name); retargeted to net10.0 with every
+             Microsoft.* package bumped to its .NET 10 line to match the SDK actually
+             installed. All the C# code is unaffected - EF Core, Identity, and
+             JwtBearer's APIs used here (DbContext, IdentityUser, AddJwtBearer, ...)
+             are unchanged across 8 -> 10. Swashbuckle jumped its OWN major version
+             number too (6.x -> 10.x) to line up with .NET 10, but its fluent
+             SwaggerGen/OpenApiInfo/OpenApiSecurityScheme configuration API - the
+             only part of it this project's Program.cs touches - has been stable
+             across that jump; if `dotnet restore`/`build` ever disagrees on an
+             exact patch number here, drop the Version attribute for that one
+             package and let NuGet resolve the latest compatible release.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>ScanEat.Api</RootNamespace>
+    <AssemblyName>ScanEat.Api</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>scaneat-backend-secrets</UserSecretsId>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- API documentation - already present in the original template project (04-BACKEND-ARCHITECTURE.md section 5) -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+
+    <!-- EF Core provider for SQL Server + migration tooling -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- Staff accounts: ASP.NET Core Identity + JWT bearer authentication -->
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.12" />
+
+    <!-- QR code image generation for table links - not tied to the .NET version, unchanged -->
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.15" />
+    <PackageReference Include="QRCoder" Version="1.6.0" />
+  </ItemGroup>
+
+  <!--
+    Microsoft.AspNetCore.SignalR is already part of the ASP.NET Core shared
+    framework referenced by the Sdk="Microsoft.NET.Sdk.Web" above - no
+    separate PackageReference is needed, matching 04-BACKEND-ARCHITECTURE.md
+    section 5.
+  -->
+
+</Project>

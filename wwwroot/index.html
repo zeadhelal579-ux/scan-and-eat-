@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Entry points for the Scan & Eat restaurant demo. -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scan &amp; Eat | Dine-in ordering</title>
+    <link rel="stylesheet" href="shared/css/tokens.css">
+    <link rel="stylesheet" href="shared/css/landing.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="wordmark" href="./">Scan &amp; Eat<span>.</span></a>
+        <span id="mode-badge" hidden></span>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Order from your table</p>
+                <h1>Good food.<br>Right to your table.</h1>
+                <p>Find something you love, make it yours, and send it straight to the kitchen.</p>
+                <a class="primary-link" id="menu-link" href="customer/index.html">Explore the menu <span aria-hidden="true">↗</span></a>
+            </div>
+            <figure class="hero-photo">
+                <img width="840" height="760" src="assets/menu/11.webp" alt="A grilled cheeseburger with melted cheddar, lettuce and red onion">
+                <figcaption><span>From the grill</span><strong>Classic Cheeseburger</strong></figcaption>
+            </figure>
+        </section>
+        <section class="workspace" aria-labelledby="staff-title">
+            <div class="workspace-heading">
+                <h2 id="staff-title">Staff workspace</h2>
+                <p id="demo-hint" hidden>Place an order, then open Kitchen or Cashier in this browser to see it arrive.</p>
+            </div>
+            <div class="role-grid">
+                <a id="kitchen-link" href="kitchen/login.html" target="_blank" rel="noopener">
+                    <strong>Kitchen</strong><span>Tickets and preparation notes</span><b aria-hidden="true">↗</b>
+                </a>
+                <a href="cashier/index.html" target="_blank" rel="noopener">
+                    <strong>Cashier</strong><span>Table bills and printable checks</span><b aria-hidden="true">↗</b>
+                </a>
+                <a id="admin-link" href="admin/login.html" target="_blank" rel="noopener">
+                    <strong>Manager</strong><span>Menu, offers and table QR codes</span><b aria-hidden="true">↗</b>
+                </a>
+            </div>
+        </section>
+    </main>
+    <script src="shared/js/config.js"></script>
+    <script src="shared/js/demo-store.js"></script>
+    <script src="shared/js/image-fallback.js"></script>
+    <script src="landing.js"></script>
+</body>
+</html>
