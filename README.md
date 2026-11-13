@@ -1,26 +1,31 @@
-# Scan & Eat
+# Scan & Eat — Standalone frontend
 
-Scan & Eat is a QR-based ordering system for dine-in restaurants. Guests scan the code on their table, browse the menu, and send an order with item-specific instructions. The kitchen sees the table and preparation notes, while the cashier can print an itemized check.
+This branch contains the browser interfaces for guests, kitchen staff, cashiers, and managers. It uses plain HTML, CSS, and JavaScript and connects to the ASP.NET Core API and SignalR hub.
 
-| Workspace | What you can do |
+## Run locally
+
+1. Start the server from the [`back-end` branch](../../tree/back-end) with its HTTPS launch profile at `https://localhost:7052`.
+2. From this branch's root, serve the frontend with Python 3.
+
+   ```powershell
+   python -m http.server 8080
+   ```
+
+3. Open `http://localhost:8080/`. Sign in as a manager and open **Tables** to generate a QR link.
+
+## Pages and source files
+
+| Path | Purpose |
 | --- | --- |
-| **Guest menu** | Search dishes, browse categories and offers, and add notes such as “no onions” in the cart. |
-| **Kitchen** | See incoming tickets by table, read preparation notes, and move orders through cooking, ready, and delivered. |
-| **Cashier** | Find a table order and print a check with quantities, unit prices, VAT, and the total. |
-| **Manager** | Edit the menu and offers, mark items sold out, and generate or deactivate table QR codes. |
+| `customer/` | Menu, search, offers, cart, table validation, and preparation notes. |
+| `kitchen/` | Staff sign-in and ticket board with status filters, SignalR updates, and polling fallback. |
+| `cashier/` | Order lookup and printable checks with prices saved by the backend. |
+| `admin/` | Manager pages for catalog, offers, tables, and QR codes. |
+| `shared/` | Staff authentication, API client, and shared styles. |
+| `assets/menu/` | Bundled WebP food photos. |
 
-## Explore the repository
+## Connect to another backend
 
-| Branch | What's inside |
-| --- | --- |
-| [`front-Deploy`](../../tree/front-Deploy) | A static interactive demo with 38 sample dishes and local food photography. Orders and edits are shared between tabs in the same browser. |
-| [`front-end`](../../tree/front-end) | The standalone customer and staff interfaces, configured to connect to the real API. |
-| [`back-end`](../../tree/back-end) | The ASP.NET Core API, SQL Server migrations, SignalR hub, and a bundled copy of the frontend. |
+Set `BACKEND_URL` in both `customer/js/config.js` and `shared/js/config.js` to the API's HTTPS origin without the `/api` suffix. For separate hosting, set the backend's `Cors__AllowedOrigins__0` to the frontend origin and `FrontendBaseUrl` to the public frontend URL used in table QR codes.
 
-## How an order moves through the restaurant
-
-The table QR opens the menu with a table token. The backend validates the table and item availability, calculates prices from the catalog, and saves the order in SQL Server. SignalR delivers the ticket to the kitchen. The cashier uses the prices saved with the order when rendering the check.
-
-**Stack** · HTML, CSS, JavaScript, ASP.NET Core 10, Entity Framework Core, SQL Server, and SignalR.
-
-The SQL-backed order flow was tested locally in Chrome and Edge, including QR validation, kitchen status changes, and the cashier's print layout.
+The connected frontend reports API connection errors and requires a valid table link to place an order.
