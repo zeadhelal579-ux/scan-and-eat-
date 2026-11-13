@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- Cashier workspace for selecting table orders and printing checks. -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cashier | Scan &amp; Eat</title>
+    <link rel="stylesheet" href="../shared/css/tokens.css">
+    <link rel="stylesheet" href="cashier.css">
+</head>
+<body>
+    <header class="bar">
+        <a href="../">Scan &amp; Eat</a>
+        <a href="../kitchen/index.html">Kitchen ↗</a>
+    </header>
+    <main>
+        <div class="heading">
+            <div><h1>Cashier</h1><p>Find a table order and print its check.</p></div>
+            <span id="connection" role="status"></span>
+        </div>
+        <div class="cashier-layout">
+            <section class="orders" aria-labelledby="orders-title">
+                <h2 id="orders-title">Table orders</h2>
+                <label for="table-search">Find a table or order</label>
+                <input id="table-search" type="search" placeholder="Table 03 or order 481">
+                <div id="order-list"></div>
+            </section>
+            <section class="check-panel" aria-label="Customer check">
+                <p id="check-empty">Select an order to see the check.</p>
+                <article id="receipt" hidden></article>
+                <button id="print-check" type="button" hidden>Print check</button>
+            </section>
+        </div>
+    </main>
+    <script src="../shared/js/config.js"></script>
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api-client.js"></script>
+    <script src="../shared/js/demo-store.js"></script>
+    <script src="../shared/js/demo-orders.js"></script>
+    <script src="cashier.js"></script>
+</body>
+</html>
